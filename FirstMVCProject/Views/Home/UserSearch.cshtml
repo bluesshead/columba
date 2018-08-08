@@ -1,0 +1,29 @@
+﻿<!-- ComposeBox -->
+<div class="row composeBox">
+	<div class="col-sm-12 composeBox-inner">
+		<div class="form-group has-feedback">
+			<input id="composeText" type="text" class="form-control" name="searchText" placeholder="Search People" onkeyup="myFunction2()">
+			<span class="glyphicon glyphicon-search form-control-feedback"></span>
+		</div>
+	</div>
+</div>
+<!-- ComposeBox End -->
+
+
+<script>
+	function myFunction2() {
+		var input, filter, ul, li, a, i;
+		input = document.getElementById("composeText");
+		filter = input.value.toUpperCase();
+		ul = document.getElementById("UserSideBarMenu");
+		li = ul.getElementsByTagName("li");
+		for (i = 0; i < li.length; i++) {
+			a = li[i].getElementsByClassName("user-name")[0];
+			if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
+				li[i].style.display = "";
+			} else {
+				li[i].style.display = "none";
+			}
+		}
+	}
+</script>

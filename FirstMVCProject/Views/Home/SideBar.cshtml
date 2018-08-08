@@ -1,0 +1,67 @@
+﻿@*@model List<FirstMVCProject.Models.username>*@
+
+@model FirstMVCProject.Models.UIModel.forLast
+<style>
+	p, ul {
+		padding: 0;
+		margin: 0;
+	}
+</style>
+
+<div class="row sideBar">
+	<ul id="SideBarMenu">
+
+		@for (int i = 0; i < Model.User.Count; i++)
+		{
+			string resim = "https://media.istockphoto.com/vectors/default-male-avatar-profile-picture-icon-grey-man-photo-placeholder-vector-id653035612";
+			if (Model.User[i].image != null)
+			{
+				var base64 = Convert.ToBase64String(Model.User[i].image);
+				resim = String.Format("data:image/gif;base64,{0}", base64);
+			}
+			<li>
+				<a href="/Home/Index/@Model.User[i].Id">
+					<div class="row sideBar-body">
+						<div class="col-sm-3 col-xs-3 sideBar-avatar">
+							<div class="avatar-icon">
+								<img src="@resim" />
+							</div>
+						</div>
+						<div class="col-sm-9 col-xs-9 sideBar-main">
+							<div class="row">
+								<div class="col-sm-8 col-xs-8 sideBar-name">
+									<div class="person-name">
+										<span class="name-meta">
+											<b>@Model.User[i].name</b>
+										</span>
+										<br />
+										<div class="last-message" style="font-size:11px; color:dimgrey;">
+											@if (Model.LastList[i] == "Yeni Mesajınız Var!")
+											{
+												<span class="name-meta" style="color:red">
+													<b>@Model.LastList[i]</b>
+												</span>
+											}
+											else
+											{
+												<span class="name-meta">
+													@Model.LastList[i]
+												</span>
+											}
+										</div>
+									</div>
+								</div>
+								<div class="col-sm-4 col-xs-4 pull-right sideBar-time">
+									<span class="time-meta pull-right">
+										@Model.Lastdate[i]
+									</span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</a>
+			</li>
+		}
+	</ul>
+</div>
+

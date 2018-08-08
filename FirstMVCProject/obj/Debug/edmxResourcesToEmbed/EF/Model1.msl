@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="columbaModelStoreContainer" CdmEntityContainer="columbaEntities">
+    <EntitySetMapping Name="username">
+      <EntityTypeMapping TypeName="columbaModel.username">
+        <MappingFragment StoreEntitySet="username">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="password_" ColumnName="password_" />
+          <ScalarProperty Name="mail" ColumnName="mail" />
+          <ScalarProperty Name="isActive" ColumnName="isActive" />
+          <ScalarProperty Name="isOnline" ColumnName="isOnline" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

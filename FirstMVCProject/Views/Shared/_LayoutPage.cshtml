@@ -1,0 +1,71 @@
+﻿
+@{
+	ViewBag.Title = "Index";
+}
+
+
+<html lang="en">
+
+<head>
+	<title>Columba - Chat</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link href="~/Content/css/homestyle.css" rel="stylesheet" />
+	<!-- Font Awesome File -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<style>
+		body {
+			background-image: url('../../Content/images/a.jpg');
+		}
+
+		.conversation {
+			background-image: url('../../Content/images/chat-background-2.jpg');
+			background-repeat: no-repeat;
+			background-attachment: fixed;
+		}
+	</style>
+
+</head>
+<body>
+	<div class="container app">
+		<div class="row app-one">
+			<div class="col-sm-4 side">
+				<div class="side-one">
+					@Html.Action("Header", "Home")  
+					@Html.Action("Search", "Home")
+					@RenderSection("Sidebar");
+				</div>
+				<div class="side-two">
+					@Html.Action("UserHeader", "Home")
+					@Html.Action("UserSearch", "Home")
+					<div class="row compose-sideBar">
+						@Html.Action("UserSideBar", "Home")
+					</div>
+				</div>
+			</div>
+			<!-- Conversation Start -->
+			<div class="col-sm-8 conversation">
+				@RenderBody()
+			</div>
+			<!-- Conversation End -->
+		</div>
+	</div>
+	<script>
+		$(".heading-compose").click(function () {
+			$(".side-two").css({
+				"left": "0"
+			});
+		});
+
+		$(".newMessage-back").click(function () {
+			$(".side-two").css({
+				"left": "-100%"
+			});
+		});
+	</script>
+</body>
+
+</html>

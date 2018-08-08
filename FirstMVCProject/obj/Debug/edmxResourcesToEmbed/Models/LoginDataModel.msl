@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="columbaModel1StoreContainer" CdmEntityContainer="columbaEntities1">
+    <EntitySetMapping Name="chats">
+      <EntityTypeMapping TypeName="columbaModel1.chat">
+        <MappingFragment StoreEntitySet="chat">
+          <ScalarProperty Name="Readable" ColumnName="Readable" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="Message" ColumnName="Message" />
+          <ScalarProperty Name="Receiver" ColumnName="Receiver" />
+          <ScalarProperty Name="Sender" ColumnName="Sender" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="usernames">
+      <EntityTypeMapping TypeName="columbaModel1.username">
+        <MappingFragment StoreEntitySet="username">
+          <ScalarProperty Name="LastSeen" ColumnName="LastSeen" />
+          <ScalarProperty Name="image" ColumnName="image" />
+          <ScalarProperty Name="isOnline" ColumnName="isOnline" />
+          <ScalarProperty Name="isActive" ColumnName="isActive" />
+          <ScalarProperty Name="mail" ColumnName="mail" />
+          <ScalarProperty Name="password_" ColumnName="password_" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="columbaModel1" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="columbaEntities1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="chats" EntityType="columbaModel1.chat" />
+    <EntitySet Name="usernames" EntityType="columbaModel1.username" />
+    <AssociationSet Name="FK_chat_username" Association="columbaModel1.FK_chat_username">
+      <End Role="username" EntitySet="usernames" />
+      <End Role="chat" EntitySet="chats" />
+    </AssociationSet>
+    <AssociationSet Name="FK_chat_username1" Association="columbaModel1.FK_chat_username1">
+      <End Role="username" EntitySet="usernames" />
+      <End Role="chat" EntitySet="chats" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="chat">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Sender" Type="Int32" Nullable="false" />
+    <Property Name="Receiver" Type="Int32" Nullable="false" />
+    <Property Name="Message" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Date" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="username" Relationship="columbaModel1.FK_chat_username" FromRole="chat" ToRole="username" />
+    <NavigationProperty Name="username1" Relationship="columbaModel1.FK_chat_username1" FromRole="chat" ToRole="username" />
+    <Property Name="Readable" Type="Int32" />
+  </EntityType>
+  <EntityType Name="username">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="password_" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="mail" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="isActive" Type="Int32" />
+    <Property Name="isOnline" Type="Int32" />
+    <Property Name="image" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <NavigationProperty Name="chats" Relationship="columbaModel1.FK_chat_username" FromRole="username" ToRole="chat" />
+    <NavigationProperty Name="chats1" Relationship="columbaModel1.FK_chat_username1" FromRole="username" ToRole="chat" />
+    <Property Name="LastSeen" Type="DateTime" Precision="3" />
+  </EntityType>
+  <Association Name="FK_chat_username">
+    <End Type="columbaModel1.username" Role="username" Multiplicity="1" />
+    <End Type="columbaModel1.chat" Role="chat" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="username">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="chat">
+        <PropertyRef Name="Sender" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_chat_username1">
+    <End Type="columbaModel1.username" Role="username" Multiplicity="1" />
+    <End Type="columbaModel1.chat" Role="chat" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="username">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="chat">
+        <PropertyRef Name="Receiver" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

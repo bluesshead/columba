@@ -1,0 +1,114 @@
+﻿@model FirstMVCProject.Models.username
+@{
+	Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+	<meta name="viewport" content="width=device-width" />
+	<title>Columba - Login</title>
+	<link href="~/Content/css/style.css" rel="stylesheet" />
+	<link href="~/Content/css/reset.css" rel="stylesheet" />
+
+	<style>
+		h1 {
+			margin: 100px 570px 0px;
+			color: white;
+			border-style: outset;
+			font-family: "Lato";
+			font-size: 50px;
+		}
+
+		forgot_link {
+			margin: 100px 570px 0px;
+		}
+
+		.alert {
+			border-radius: 7px;
+			padding: 20px;
+			background-color: #f44336;
+			color: white;
+			font-family: "Lato";
+		}
+
+		.closebtn {
+			margin-left: 15px;
+			color: white;
+			font-weight: bold;
+			float: right;
+			font-size: 22px;
+			line-height: 20px;
+			cursor: pointer;
+			transition: 0.3s;
+		}
+
+			.closebtn:hover {
+				color: black;
+			}
+
+		.forgot_link {
+			color: #83afdf;
+			text-decoration: none;
+			font-size: 15px;
+			position: relative;
+			left: 145px;
+			top: -20px;
+		}
+
+		.button {
+			width: 250px;
+			border-radius: 7px;
+			background: #b6ee65;
+			border: none;
+			color: #51771a;
+			margin-top: -5px;
+			padding-top: 14px;
+			padding-bottom: 14px;
+			padding: 14px 105px;
+			font-family: "Lato";
+			outline: none;
+			font-size: 13px;
+		}
+	</style>
+</head>
+<body>
+	<h1> Columba.</h1>
+	<div id="login-div">
+
+		@using (Html.BeginForm("Login", "User", FormMethod.Post))
+		{
+			<div class="wrap">
+				<div class="avatar">
+					<img src="~/Content/images/FotorCreated.jpg" />
+				</div>
+				@Html.EditorFor(model => model.name, new { htmlAttributes = new { @placeholder = "Username" } })
+				<div class="bar">
+					<i></i>
+				</div>
+				@Html.PasswordFor(model => model.password_, new { @placeholder = "Password" })
+
+				<a href="/User/forgot" class="forgot_link">Forgot Password?</a>
+				@if (ViewBag.issuccess == false)
+				{
+					<div class="alert">
+						<span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+						<strong>ERROR!</strong> Invalid username or password.
+					</div>
+				}
+				<br>
+				<button style="font-family:Lato" type="submit">Log In</button>
+				<br><br>
+				<div>
+					<a class="button" href="/User/SignUp" style="text-decoration: none">SignUp</a>
+				</div>
+			</div>
+		}
+	</div>
+	<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+	<script src="~/Scripts/jquery.validate.min.js"></script>
+	<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+	<script src="js/index.js"></script>
+</body>
+</html>

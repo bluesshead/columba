@@ -1,0 +1,45 @@
+﻿@model List<FirstMVCProject.Models.username>
+
+<style>
+	p, ul {
+		padding: 0;
+		margin: 0;
+	}
+</style>
+
+
+<ul id="UserSideBarMenu">
+
+	@foreach (var person in Model)
+	{
+		string resim = "https://media.istockphoto.com/vectors/default-male-avatar-profile-picture-icon-grey-man-photo-placeholder-vector-id653035612";
+		if (person.image != null)
+		{
+			var base64 = Convert.ToBase64String(person.image);
+			resim = String.Format("data:image/gif;base64,{0}", base64);
+
+		}
+	<li>
+		<div class="row sideBar-body">
+			<a href="/Home/Index/@person.Id">
+				<div class="col-sm-3 col-xs-3 sideBar-avatar">
+					<div class="avatar-icon">
+						<img src="@resim" />
+					</div>
+				</div>
+				<div class="col-sm-9 col-xs-9 sideBar-main">
+					<div class="row">
+						<div class="col-sm-8 col-xs-8 sideBar-name">
+							<div class="user-name">
+								<span class="name-meta">
+									<b>@person.name</b>
+								</span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</a>
+		</div>
+	</li>
+	}
+</ul>

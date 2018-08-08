@@ -1,0 +1,147 @@
+﻿@model FirstMVCProject.Models.username
+@{
+	Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+	<meta name="viewport" content="width=device-width" />
+	<title>Columba - Sign Up</title>
+	<link href="~/Content/css/style.css" rel="stylesheet" />
+	<link href="~/Content/css/reset.css" rel="stylesheet" />
+	<style>
+		h1 {
+			margin: 100px 570px 0px;
+			color: white;
+			border-style: outset;
+			font-family: "Lato";
+			font-size: 50px;
+		}
+
+		forgot_link {
+			margin: 100px 570px 0px;
+		}
+
+		.alert {
+			border-radius: 7px;
+			padding: 20px;
+			background-color: #f44336;
+			color: white;
+			font-family: "Lato";
+		}
+
+		.alert2 {
+			border-radius: 7px;
+			padding: 20px;
+			background-color: #b6ee65;
+			color: #51771a;
+			font-family: "Lato";
+		}
+
+		.closebtn {
+			margin-left: 15px;
+			color: white;
+			font-weight: bold;
+			float: right;
+			font-size: 22px;
+			line-height: 20px;
+			cursor: pointer;
+			transition: 0.3s;
+		}
+
+			.closebtn:hover {
+				color: black;
+			}
+
+		.forgot_link {
+			color: #83afdf;
+			text-decoration: none;
+			font-size: 10px;
+			position: relative;
+			left: 193px;
+			top: -36px;
+		}
+
+		.button {
+			width: 250px;
+			border-radius: 7px;
+			background: #b6ee65;
+			border: none;
+			color: #51771a;
+			margin-top: -5px;
+			padding-top: 14px;
+			padding-bottom: 14px;
+			padding: 14px 96px;
+			font-family: "Lato";
+			outline: none;
+			font-size: 13px;
+		}
+	</style>
+</head>
+<body>
+	<h1> Columba.</h1>
+	<div id="login-div">
+
+		@using (Html.BeginForm("signUp", "User", FormMethod.Post, new { enctype = "multipart/form-data" }))
+		{
+		<div class="wrap">
+			<div class="avatar">
+				<img src="~/Content/images/FotorCreated.jpg" />
+			</div>
+			@Html.EditorFor(model => model.name, new { htmlAttributes = new { @placeholder = "Username" } })
+			<div class="bar">
+				<i></i>
+			</div>
+			@Html.EditorFor(model => model.mail, new { htmlAttributes = new { @placeholder = "E-mail Address", type = "email", value = @ViewBag.issuccess } })
+			<div class="bar">
+				<i></i>
+			</div>
+			@Html.PasswordFor(model => model.password_, new { @placeholder = "Password", name = "passw1" })
+			<div class="bar">
+				<i></i>
+			</div>
+			<input type="password" placeholder="Confirm the Password" name="pass" />
+			<br>
+			@Html.LabelFor(model => model.image, new { htmlAttributes = new { @placeholder = "Resim Yükleyiniz" } })
+			<input type="file" style="background-color:transparent" id="image1" name="image1" />
+			<div>
+				<button type="submit" onclick="window.location.href='/User/signUp'">Üye Ol</button>
+			</div>
+			<br>
+			@if (ViewBag.issuccess == false)
+			{
+				<div class="alert">
+					<span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+					<strong>ERROR!</strong> Username or e-mail address already exist. Choose another one.
+				</div>
+			}
+			@if (ViewBag.issuccess == true)
+			{
+				<div>
+					<a class="button" href="/User/Login" style="text-decoration: none">Ana Sayfa</a>
+				</div>
+				<br> <br>
+				<div class="alert2">
+					<span class="closebtn" style="color: #51771a" onclick="this.parentElement.style.display='none';">&times;</span>
+					<strong>SUCCESSFUL!</strong> Check your mail box!
+				</div>
+			}
+			@if (ViewBag.notEqualPasswords == false)
+			{
+				<div class="alert">
+					<span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+					<strong>ERROR!</strong> Your passwords don't match! 
+				</div>
+			}
+		</div>
+		}
+	</div>
+	<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+	<script src="~/Scripts/jquery.validate.min.js"></script>
+	<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+	<script src="js/index.js"></script>
+
+</body>
+</html>

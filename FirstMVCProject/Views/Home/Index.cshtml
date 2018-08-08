@@ -1,0 +1,180 @@
+﻿@model FirstMVCProject.Models.UIModel.MessageViewModel
+@{
+	ViewBag.Title = "Index";
+	Layout = "~/Views/Shared/_LayoutPage.cshtml";
+}
+
+@section Sidebar {
+	@Html.Action("SideBar", "Home");
+}
+
+<style>
+	input {
+		width: 630px !important;
+		height: 40px !important;
+	}
+
+	.heading-avatar-icon img {
+		border-radius: 50%;
+		height: 30px;
+		width: 30px;
+	}
+</style>
+
+@if (Model != null)
+{
+	string resim = "https://media.istockphoto.com/vectors/default-male-avatar-profile-picture-icon-grey-man-photo-placeholder-vector-id653035612";
+	if (Model.User.image != null)
+	{
+		var base64 = Convert.ToBase64String(Model.User.image);
+		resim = String.Format("data:image/gif;base64,{0}", base64);
+	}
+	<div class="row heading">
+		<div class="col-sm-2 col-md-1 col-xs-3 heading-avatar">
+			<div class="heading-avatar-icon">
+				<img src="@resim" />
+			</div>
+		</div>
+		<div class="col-sm-8 col-xs-7 heading-name">
+			<a class="heading-name-meta">
+				@Model.User.name
+			</a>
+			@if (Model.User.isOnline == 0)
+			{
+				<a class="name-meta" style="font-size:11px; color:grey; padding: 3% !important">
+					Last Seen : @Model.User.LastSeen
+				</a>
+			}
+			else
+			{
+				<a class="name-meta" style="font-size:11px; color:dodgerblue; padding:3% !important">
+					<b>Online</b>
+				</a>
+			}
+			<span class="heading-online">Online</span>
+		</div>
+		<div class="col-sm-1 col-xs-1  heading-dot pull-right">
+			<b>LogOut</b>
+			<div class="heading-avatar-icon" id="logoff">
+				<a href="/Home/Exit">
+					<img src="~/Content/images/off.png" />
+				</a>
+			</div>
+		</div>
+	</div>
+
+	<!-- Message Box -->
+	<div class="row message" id="conversation">
+
+		@if (Model.MessageList.Count == 0)
+		{
+			<div class="row message-previous">
+				<div class="col-sm-12 previous">
+					<a onclick="previous(this)" id="ankitjain28" name="20">Hey! Let's chat. </a>
+				</div>
+			</div>
+		}
+		else
+		{
+			<div class="row message-body">
+				@foreach (FirstMVCProject.Models.chat item in Model.MessageList)
+				{
+					if (item.Sender == ViewBag.BenimId)
+					{
+						<div class="col-sm-12 message-main-sender">
+							<div class="sender">
+								<div class="message-text">
+									@item.Message
+								</div>
+								@if (item.Readable == 0)
+								{
+									<span class="message-time pull-right">
+										✔✔
+										<span class="message-time pull-right">
+											@item.Date
+										</span>
+									</span>
+								}
+								else
+								{
+									<span class="message-time pull-right" style="color:blue">
+										✔✔
+										<span class="message-time pull-right">
+											@item.Date
+										</span>
+									</span>
+								}
+							</div>
+						</div>
+					}
+					else
+					{
+						<div class="col-sm-12 message-main-receiver">
+							<div class="receiver">
+								<div class="message-text">
+									@item.Message
+								</div>
+								<span class="message-time pull-right">
+									@item.Date
+								</span>
+							</div>
+							<br />
+						</div>
+					}
+				}
+			</div>
+		}
+	</div>
+	<!-- Message Box End -->
+
+	<!-- Reply Box -->
+	<div class="row reply">
+		@using (Html.BeginForm("MessageSend", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+		{
+			<div class="col-sm-1 col-xs-1 reply-emojis">
+				<i class="fa fa-smile-o fa-2x"></i>
+			</div>
+			@Html.HiddenFor(a => a.Message.Receiver)
+			@Html.HiddenFor(a => a.Message.Sender)
+			<div class="col-sm-9 col-xs-9 reply-main">
+				<!--  New Message -->
+				@Html.TextBoxFor(model => model.Message.Message, new { autocomplete = "off", placeholder = "Mesaj..." })
+			</div>
+			<div class="col-sm-1 col-xs-1 reply-send">
+				<button class="fa fa-send fa-2x" aria-hidden="true" type="submit"></button>
+
+			</div>
+		}
+	</div>
+	<!-- Reply Box End -->
+}
+else
+{
+	<div class="row heading">
+		<div class="col-sm-2 col-md-1 col-xs-3 heading-avatar">
+			<div class="heading-avatar-icon">
+				<img src="~/Content/images/FotorCreated.jpg" />
+			</div>
+		</div>
+		<div class="col-sm-8 col-xs-7 heading-name">
+			<a class="heading-name-meta">
+				Welcome to Columba!
+			</a>
+			<span class="heading-online">Online</span>
+		</div>
+		<div class="col-sm-1 col-xs-1  heading-dot pull-right">
+			<b>LogOut</b>
+			<div class="heading-avatar-icon" id="logoff">
+				<a href="/Home/Exit">
+					<img src="~/Content/images/off.png" />
+				</a>
+			</div>
+		</div>
+	</div>
+}
+<script>
+	var messageBody = document.querySelector('#conversation');
+	messageBody.scrollTop = messageBody.scrollHeight - messageBody.clientHeight;
+
+</script>
+
