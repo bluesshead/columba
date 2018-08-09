@@ -79,31 +79,31 @@
 
 		@using (Html.BeginForm("Login", "User", FormMethod.Post))
 		{
-			<div class="wrap">
-				<div class="avatar">
-					<img src="~/Content/images/FotorCreated.jpg" />
-				</div>
-				@Html.EditorFor(model => model.name, new { htmlAttributes = new { @placeholder = "Username" } })
-				<div class="bar">
-					<i></i>
-				</div>
-				@Html.PasswordFor(model => model.password_, new { @placeholder = "Password" })
-
-				<a href="/User/forgot" class="forgot_link">Forgot Password?</a>
-				@if (ViewBag.issuccess == false)
-				{
-					<div class="alert">
-						<span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
-						<strong>ERROR!</strong> Invalid username or password.
-					</div>
-				}
-				<br>
-				<button style="font-family:Lato" type="submit">Log In</button>
-				<br><br>
-				<div>
-					<a class="button" href="/User/SignUp" style="text-decoration: none">SignUp</a>
-				</div>
+		<div class="wrap">
+			<div class="avatar">
+				<img src="~/Content/images/FotorCreated.jpg" />
 			</div>
+			@Html.EditorFor(model => model.name, new { htmlAttributes = new { @placeholder = "Username" } })
+			<div class="bar">
+				<i></i>
+			</div>
+			@Html.PasswordFor(model => model.password_, new { @placeholder = "Password" })
+
+			<a href="/User/forgot" class="forgot_link">Forgot Password?</a>
+			@if (ViewBag.issuccess == false)
+			{
+			<div class="alert">
+				<span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+				<strong>ERROR!</strong> Invalid username or password.
+			</div>
+			}
+			<br>
+			<button style="font-family:Lato" type="submit">Log In</button>
+			<br><br>
+			<div>
+				<a class="button" href="/User/SignUp" style="text-decoration: none">SignUp</a>
+			</div>
+		</div>
 		}
 	</div>
 	<script src="~/Scripts/jquery-3.3.1.min.js"></script>

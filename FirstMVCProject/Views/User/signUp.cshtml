@@ -78,6 +78,10 @@
 			outline: none;
 			font-size: 13px;
 		}
+
+		.pass2 {
+			border-radius: 0px 0px 0px 0px !important;
+		}
 	</style>
 </head>
 <body>
@@ -86,56 +90,58 @@
 
 		@using (Html.BeginForm("signUp", "User", FormMethod.Post, new { enctype = "multipart/form-data" }))
 		{
-		<div class="wrap">
-			<div class="avatar">
-				<img src="~/Content/images/FotorCreated.jpg" />
-			</div>
-			@Html.EditorFor(model => model.name, new { htmlAttributes = new { @placeholder = "Username" } })
-			<div class="bar">
-				<i></i>
-			</div>
-			@Html.EditorFor(model => model.mail, new { htmlAttributes = new { @placeholder = "E-mail Address", type = "email", value = @ViewBag.issuccess } })
-			<div class="bar">
-				<i></i>
-			</div>
-			@Html.PasswordFor(model => model.password_, new { @placeholder = "Password", name = "passw1" })
-			<div class="bar">
-				<i></i>
-			</div>
-			<input type="password" placeholder="Confirm the Password" name="pass" />
-			<br>
-			@Html.LabelFor(model => model.image, new { htmlAttributes = new { @placeholder = "Resim Yükleyiniz" } })
-			<input type="file" style="background-color:transparent" id="image1" name="image1" />
-			<div>
-				<button type="submit" onclick="window.location.href='/User/signUp'">Üye Ol</button>
-			</div>
-			<br>
-			@if (ViewBag.issuccess == false)
-			{
-				<div class="alert">
-					<span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
-					<strong>ERROR!</strong> Username or e-mail address already exist. Choose another one.
+			<div class="wrap">
+				<div class="avatar">
+					<img src="~/Content/images/FotorCreated.jpg" />
 				</div>
-			}
-			@if (ViewBag.issuccess == true)
-			{
+				@Html.EditorFor(model => model.name, new { htmlAttributes = new { @placeholder = "Username" } })
+				<div class="bar">
+					<i></i>
+				</div>
+				@Html.EditorFor(model => model.mail, new { htmlAttributes = new { @placeholder = "E-mail Address", type = "email" } })
+				<div class="bar">
+					<i></i>
+				</div>
+				<input type="password" placeholder="Password" name="pass" style="border-radius:0px 0px 0px 0px" />
+				<div class="bar">
+					<i></i>
+				</div>
+				@Html.EditorFor(model => model.password_, new { htmlAttributes = new { @placeholder = "Confirm the Password", type = "password" } })
+				<br>
+				@Html.LabelFor(model => model.image)
+				<input type="file" style="background-color:transparent" id="image1" name="image1" />
 				<div>
-					<a class="button" href="/User/Login" style="text-decoration: none">Ana Sayfa</a>
+					<button type="submit" onclick="window.location.href='/User/signUp'">Sign Up</button>
 				</div>
-				<br> <br>
-				<div class="alert2">
-					<span class="closebtn" style="color: #51771a" onclick="this.parentElement.style.display='none';">&times;</span>
-					<strong>SUCCESSFUL!</strong> Check your mail box!
-				</div>
-			}
-			@if (ViewBag.notEqualPasswords == false)
-			{
-				<div class="alert">
-					<span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
-					<strong>ERROR!</strong> Your passwords don't match! 
-				</div>
-			}
-		</div>
+				<br>
+				<a class="button" href="/User/Login" style="text-decoration: none">HomePage</a>
+				@if (ViewBag.issuccess == false)
+				{
+					<div class="alert">
+						<span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+						<strong>ERROR!</strong> E-mail address already exists. Choose another one.
+					</div>
+				}
+				@if (ViewBag.issuccess == true)
+				{
+					<div>
+
+
+					</div>
+					<br> <br>
+					<div class="alert2">
+						<span class="closebtn" style="color: #51771a" onclick="this.parentElement.style.display='none';">&times;</span>
+						<strong>SUCCESSFUL!</strong>
+					</div>
+				}
+				@if (ViewBag.notEqualPasswords == false)
+				{
+					<div class="alert">
+						<span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+						<strong>ERROR!</strong> Your passwords don't match!
+					</div>
+				}
+			</div>
 		}
 	</div>
 	<script src="~/Scripts/jquery-3.3.1.min.js"></script>

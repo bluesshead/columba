@@ -31,6 +31,7 @@
 			color: white;
 			font-family: "Lato";
 		}
+
 		.alert2 {
 			border-radius: 7px;
 			padding: 20px;
@@ -50,9 +51,9 @@
 			transition: 0.3s;
 		}
 
-		.closebtn:hover {
-			color: black;
-		}
+			.closebtn:hover {
+				color: black;
+			}
 
 		.forgot_link {
 			color: #83afdf;
@@ -62,6 +63,7 @@
 			left: 193px;
 			top: -36px;
 		}
+
 		.button {
 			width: 250px;
 			border-radius: 7px;
@@ -84,36 +86,35 @@
 
 		@using (Html.BeginForm("forgot", "User", FormMethod.Post))
 		{
-
-		<div class="wrap">
-			<div class="avatar">
-				<img src="~/Content/images/FotorCreated.jpg" />
-			</div>
-			@Html.EditorFor(model => model.mail, new { htmlAttributes = new { @placeholder = "E-mail Adresi" } })
-			<br>
-			<div>
-				<button onclick="window.location.href='/User/Login'"> Şifremi Yolla! </button>
-			</div>
-			<br>
-			@if (ViewBag.issuccess == false)
-			{
-				<div class="alert">
-					<span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
-					<strong>ERROR!</strong> Invalid e-mail address!
+			<div class="wrap">
+				<div class="avatar">
+					<img src="~/Content/images/FotorCreated.jpg" />
 				</div>
-			}
-			@if (ViewBag.issuccess == true)
-			{
+				@Html.EditorFor(model => model.mail, new { htmlAttributes = new { @placeholder = "E-mail Address" } })
+				<br>
 				<div>
-					<a class="button" href="/User/Login" style="text-decoration: none">Ana Sayfa</a>
+					<button onclick="window.location.href='/User/Login'">Send the Password! </button>
 				</div>
-				<br><br>
-				<div class="alert2">
-					<span class="closebtn" style="color: #51771a" onclick="this.parentElement.style.display='none';">&times;</span>
-					<strong>SUCCESSFUL!</strong> Check your mail box for your password!
-				</div>
-			}
-		</div>
+				<br>
+				@if (ViewBag.issuccess == false)
+				{
+					<div class="alert">
+						<span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+						<strong>ERROR!</strong> Invalid e-mail address!
+					</div>
+				}
+				@if (ViewBag.issuccess == true)
+				{
+					<div>
+						<a class="button" href="/User/Login" style="text-decoration: none">HomePage</a>
+					</div>
+					<br><br>
+					<div class="alert2">
+						<span class="closebtn" style="color: #51771a" onclick="this.parentElement.style.display='none';">&times;</span>
+						<strong>SUCCESSFUL!</strong> Check your mail box for your password!
+					</div>
+				}
+			</div>
 		}
 	</div>
 	<script src="~/Scripts/jquery-3.3.1.min.js"></script>
