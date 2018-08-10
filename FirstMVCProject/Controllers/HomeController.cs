@@ -187,7 +187,7 @@ namespace FirstMVCProject.Controllers
                         dr.Close();
                         baglanti.Dispose();
                         baglanti.Close();
-                        string newone = "Yeni Mesajınız Var!";
+                        string newone = "You have a new message!";
                         return (newone);
                     }
                     else
