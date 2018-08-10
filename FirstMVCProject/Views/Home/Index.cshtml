@@ -138,7 +138,7 @@
 			@Html.HiddenFor(a => a.Message.Sender)
 			<div class="col-sm-9 col-xs-9 reply-main">
 				<!--  New Message -->
-				@Html.TextBoxFor(model => model.Message.Message, new { autocomplete = "off", placeholder = "Mesaj..." })
+				@Html.TextBoxFor(model => model.Message.Message, new { autocomplete = "off", placeholder = "Message..." })
 			</div>
 			<div class="col-sm-1 col-xs-1 reply-send">
 				<button class="fa fa-send fa-2x" aria-hidden="true" type="submit"></button>
